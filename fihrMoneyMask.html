@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <input type="text" placeholder="R$0,00" onInput="maskMoney(event);" />
+
+  <script>
+
+    
+    const maskMoney = (e) => {
+    const onlyDigits = e.target.value //impede outros caracteres
+    .split("") //divide por ""
+    .filter(num => /\d/.test(num))//realiza o filtro impedindo sair outras coisas alem de numeros
+    .join("")//retorna numaa string
+    .padStart(3, "0")
+  const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+  e.target.value = dinheiro(digitsFloat)
+}
+
+const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
+  //locale influencia no formato de saida ex:pontos e virgulas
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency
+  }).format(valor)
+}
+
+  </script>
+</body>
+</html>
