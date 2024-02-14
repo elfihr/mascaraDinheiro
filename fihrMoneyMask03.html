@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input  id="salario" class="forMath" placeholder="0,00">
+
+    <script>
+    let  forMath = document.querySelector('.forMath')   
+    let salario = document.getElementById("salario");    
+        
+    forMath.addEventListener( 'keyup', () => {
+            
+            formatMoney(salario);
+            function formatMoney(tempSalario){
+	        var tempSalario;
+            if(tempSalario.value.length <= 0)tempSalario.value = "0,00";
+            var salTemp = tempSalario.value;
+            salTemp = salTemp + "";//Nao deixa dar um espaço(evita erros)
+            salTemp = parseInt (salTemp.replace(/[\D]+/g,""));//apenas numero
+            salTemp = salTemp+"";//Nao deixa dar um espaço(evita erros)
+            salTemp = salTemp.replace(/([0-9]{2})$/g,",$1");//Permite Virgula
+            tempSalario.value = salTemp
+            };
+        }) 
+    </script>
+</body>
+</html>
